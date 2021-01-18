@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using ElectoralPOC.V1.Gateways;
+using ElectoralPOC.V1.Helpers;
 using ElectoralPOC.V1.Infrastructure;
 using ElectoralPOC.V1.UseCase;
 using ElectoralPOC.V1.UseCase.Interfaces;
@@ -105,27 +105,19 @@ namespace ElectoralPOC
                 if (File.Exists(xmlPath))
                     c.IncludeXmlComments(xmlPath);
             });
-            ConfigureDbContext(services);
             RegisterGateways(services);
             RegisterUseCases(services);
         }
 
-        private static void ConfigureDbContext(IServiceCollection services)
-        {
-            var connectionString = Environment.GetEnvironmentVariable("CONNECTION_STRING");
-
-            services.AddDbContext<DatabaseContext>(
-                opt => opt.UseNpgsql(connectionString));
-        }
-
         private static void RegisterGateways(IServiceCollection services)
         {
-            services.AddScoped<IExampleGateway, ExampleGateway>();
+            services.AddSingleton<IGenerateS3PreSignedUrlGateway, GenerateS3PreSignedUrlGateway>();
+            services.AddSingleton<IAwsS3Client, AWSS3Client>();
         }
 
         private static void RegisterUseCases(IServiceCollection services)
         {
-            services.AddScoped<IInsertJsonUseCase, InsertJsonUseCase>();
+            services.AddScoped<IGetPreSignURLUseCase, GetPreSignURLUseCase>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
