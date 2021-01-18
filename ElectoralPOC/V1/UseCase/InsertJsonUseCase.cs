@@ -6,10 +6,10 @@ using ElectoralPOC.V1.UseCase.Interfaces;
 namespace ElectoralPOC.V1.UseCase
 {
     //TODO: Rename class name and interface name to reflect the entity they are representing eg. GetAllClaimantsUseCase
-    public class GetAllUseCase : IGetAllUseCase
+    public class InsertJsonUseCase : IInsertJsonUseCase
     {
         private readonly IExampleGateway _gateway;
-        public GetAllUseCase(IExampleGateway gateway)
+        public InsertJsonUseCase(IExampleGateway gateway)
         {
             _gateway = gateway;
         }

@@ -2,8 +2,8 @@ using ElectoralPOC.V1.Boundary.Response;
 
 namespace ElectoralPOC.V1.UseCase.Interfaces
 {
-    public interface IGetByIdUseCase
+    public interface IInsertJsonUseCase
     {
-        ResponseObject Execute(int id);
+        ResponseObjectList Execute();
     }
 }
