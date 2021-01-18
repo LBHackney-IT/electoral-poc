@@ -24,7 +24,7 @@ namespace ElectoralPOC.Tests.V1.Gateways
         {
             _mockS3Client = new Mock<IAwsS3Client>();
             _classUnderTest = new GenerateS3PreSignedUrlGateway(_mockS3Client.Object);
-            Environment.SetEnvironmentVariable("PRESIGNED_URL_EXPIRATION_IN_SECONDS","0.2");
+            Environment.SetEnvironmentVariable("PRESIGNED_URL_EXPIRATION_IN_SECONDS", "0.2");
             Environment.SetEnvironmentVariable("ELECTORAL_POC_S3_BUCKET_NAME", "bucket");
         }
         [Test]

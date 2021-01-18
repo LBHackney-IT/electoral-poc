@@ -19,7 +19,7 @@ namespace ElectoralPOC.V1.Infrastructure
         public string GenerateS3PreSignURL(GetPreSignedUrlRequest request)
         {
             using (AmazonS3Client _s3Client = new AmazonS3Client(RegionEndpoint.USWest2))
-            {            
+            {
 
                 using (var stream = new MemoryStream())
                 {

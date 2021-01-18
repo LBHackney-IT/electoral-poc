@@ -9,11 +9,11 @@ namespace ElectoralPOC.V1.Helpers
     {
         public static string ComposeFilePath(string basePath, string fileName, string submissionId)
         {
-            fileName = fileName.StartsWith("/") ? fileName.Remove(0,1) : fileName;
+            fileName = fileName.StartsWith("/") ? fileName.Remove(0, 1) : fileName;
             submissionId = submissionId.StartsWith("/") ? submissionId.Remove(0, 1) : submissionId;
             basePath = string.IsNullOrEmpty(basePath) ? "" : basePath + "/";
 
-            return basePath 
+            return basePath
                 + submissionId + "/docs/"
                 + fileName;
         }

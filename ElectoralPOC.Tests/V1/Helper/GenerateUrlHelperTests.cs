@@ -17,7 +17,7 @@ namespace ElectoralPOC.Tests.V1.Helper
         {
             var fileName = _faker.Random.Word();
             var submissionId = _faker.Random.AlphaNumeric(9);
-            var expectedUrl =  submissionId + "/docs/"+ fileName;
+            var expectedUrl = submissionId + "/docs/" + fileName;
 
             var actualResult = GenerateUrlHelper.ComposeFilePath("", fileName, submissionId);
             actualResult.Should().Be(expectedUrl);
@@ -30,7 +30,7 @@ namespace ElectoralPOC.Tests.V1.Helper
             var submissionId = _faker.Random.AlphaNumeric(9);
             var expectedUrl = submissionId + "/docs/" + fileName;
 
-            var actualResult = GenerateUrlHelper.ComposeFilePath("", "/"+fileName, "/"+submissionId);
+            var actualResult = GenerateUrlHelper.ComposeFilePath("", "/" + fileName, "/" + submissionId);
             actualResult.Should().Be(expectedUrl);
         }
     }
