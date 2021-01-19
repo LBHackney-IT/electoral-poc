@@ -18,5 +18,8 @@ namespace ElectoralPOC.V1.Boundary.Request
         public string BasePath { get; set; } = "";
         [Required]
         public string BucketName { get; set; }
+
+        [Required]
+        public string JsonData { get; set; }
     }
 }

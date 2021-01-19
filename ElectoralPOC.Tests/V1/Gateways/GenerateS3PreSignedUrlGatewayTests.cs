@@ -52,7 +52,7 @@ namespace ElectoralPOC.Tests.V1.Gateways
         [Test]
         public void CanSuccessfullyReturnGeneratedUrl()
         {
-            var expectedResponse = "https://random.test";
+            var expectedResponse = "https://master.d1ew52s1hpob9x.amplifyapp.com/form/register-applicant/applicant-details";
             _mockS3Client.Setup(x => x.GenerateS3PreSignURL(It.IsAny<GetPreSignedUrlRequest>())).Returns(expectedResponse);
 
             var request = _fixture.Create<GenerateS3PreSignedUrlRequest>();

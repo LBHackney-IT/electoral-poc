@@ -7,6 +7,7 @@ using ElectoralPOC.V1.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace ElectoralPOC.V1.Helpers
