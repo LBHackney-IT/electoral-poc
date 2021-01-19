@@ -34,7 +34,7 @@ namespace ElectoralPOC.Tests.V1.Controllers
         [Test]
         public void CanGeneratePreSignedURL()
         {
-            var expectedResponse = new GeneratePreSignedUrlResponse() { Url = "https://random-url.test" };
+            var expectedResponse = new GeneratePreSignedUrlResponse() { Url = "https://master.d1ew52s1hpob9x.amplifyapp.com/form/register-applicant/applicant-details" };
             _mockUseCase.Setup(x => x.GetS3PutPresignUrl(It.IsAny<GenerateS3PreSignedUrlRequest>())).Returns(expectedResponse);
 
             var response = _classUnderTest.GenerateS3PreSignedUrl(new GenerateS3PreSignedUrlRequest()) as ObjectResult;
