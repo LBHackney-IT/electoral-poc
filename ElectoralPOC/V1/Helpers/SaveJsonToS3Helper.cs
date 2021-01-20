@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ElectoralPOC.V1.Helpers
 {
-    public static class GenerateUrlHelper
+    public static class SaveJsonToS3Helper
     {
         public static string ComposeFilePath(string basePath, string fileName, string submissionId)
         {

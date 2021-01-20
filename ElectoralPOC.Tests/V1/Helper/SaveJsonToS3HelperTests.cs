@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ElectoralPOC.Tests.V1.Helper
 {
-    public class GenerateUrlHelperTests
+    public class SaveJsonToS3HelperTests
     {
         private readonly Faker _faker = new Faker();
         [Test]
@@ -19,7 +19,7 @@ namespace ElectoralPOC.Tests.V1.Helper
             var submissionId = _faker.Random.AlphaNumeric(9);
             var expectedUrl = submissionId + "/docs/" + fileName;
 
-            var actualResult = GenerateUrlHelper.ComposeFilePath("", fileName, submissionId);
+            var actualResult = SaveJsonToS3Helper.ComposeFilePath("", fileName, submissionId);
             actualResult.Should().Be(expectedUrl);
         }
 
@@ -30,7 +30,7 @@ namespace ElectoralPOC.Tests.V1.Helper
             var submissionId = _faker.Random.AlphaNumeric(9);
             var expectedUrl = submissionId + "/docs/" + fileName;
 
-            var actualResult = GenerateUrlHelper.ComposeFilePath("", "/" + fileName, "/" + submissionId);
+            var actualResult = SaveJsonToS3Helper.ComposeFilePath("", "/" + fileName, "/" + submissionId);
             actualResult.Should().Be(expectedUrl);
         }
     }

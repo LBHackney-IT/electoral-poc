@@ -9,6 +9,6 @@ namespace ElectoralPOC.V1.Infrastructure
 {
     public interface IAwsS3Client
     {
-        string GenerateS3PreSignURL(GetPreSignedUrlRequest request);
+        string SaveJsonToS3(GetPreSignedUrlRequest request);
     }
 }

@@ -3,12 +3,12 @@ using System;
 
 namespace ElectoralPOC.V1.Boundary.Response
 {
-    public class GeneratePreSignedUrlResponse
+    public class SaveJsonToS3Response
     {
         /// <example>
         /// Hackney
         /// </example>
-        [JsonProperty("url")]
-        public string Url { get; set; }
+        [JsonProperty("json")]
+        public string JsonData { get; set; }
     }
 }
