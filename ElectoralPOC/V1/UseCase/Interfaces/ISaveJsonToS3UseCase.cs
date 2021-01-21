@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace ElectoralPOC.V1.UseCase.Interfaces
 {
-    public interface IGetS3PutPresignUrlUseCase
+    public interface ISaveJsonToS3UseCase
     {
-        SaveJsonToS3Response GetS3PutPresignUrl(SaveJsonToS3Request request);
+        SaveJsonToS3Response SaveJsonToS3Case(SaveJsonToS3Request request);
     }
 
 }

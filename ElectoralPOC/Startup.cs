@@ -118,7 +118,7 @@ namespace ElectoralPOC
 
         private static void RegisterUseCases(IServiceCollection services)
         {
-            services.AddScoped<IGetS3PutPresignUrlUseCase, GetS3PutPresignUrlUseCase>();
+            services.AddScoped<ISaveJsonToS3UseCase, SaveJsonToS3UseCase>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

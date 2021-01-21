@@ -17,9 +17,9 @@ namespace ElectoralPOC.V1.Controllers
     [ApiVersion("1.0")]
     public class SaveJsonToS3Controller : BaseController
     {
-        private readonly IGetS3PutPresignUrlUseCase _getSaveJsonToS3UseCase;
+        private readonly ISaveJsonToS3UseCase _getSaveJsonToS3UseCase;
 
-        public SaveJsonToS3Controller(IGetS3PutPresignUrlUseCase getSaveJsonToS3UseCase)
+        public SaveJsonToS3Controller(ISaveJsonToS3UseCase getSaveJsonToS3UseCase)
         {
             _getSaveJsonToS3UseCase = getSaveJsonToS3UseCase;
         }
@@ -34,7 +34,7 @@ namespace ElectoralPOC.V1.Controllers
         {
             try
             {
-                var response = _getSaveJsonToS3UseCase.GetS3PutPresignUrl(request);
+                var response = _getSaveJsonToS3UseCase.SaveJsonToS3Case(request);
                 return CreatedAtAction("SaveS3", response);
             }
             catch (JsonFileCouldNotBeSavedToS3Exception ex)
