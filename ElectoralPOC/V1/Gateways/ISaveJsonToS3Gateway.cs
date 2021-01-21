@@ -1,3 +1,4 @@
+using Amazon.S3.Model;
 using ElectoralPOC.V1.Boundary.Request;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,6 @@ namespace ElectoralPOC.V1.Gateway
 {
     public interface ISaveJsonToS3Gateway
     {
-        string ConvertJsonToArray(SaveJsonToS3Request request);
+        string ConvertJsonToArray(SaveJsonToS3Request jsonRequest);
     }
 }

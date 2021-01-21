@@ -17,11 +17,11 @@ namespace ElectoralPOC.Tests.V1.Controllers
     public class SaveJsonToS3ControllerTests
     {
         private SaveJsonToS3Controller _classUnderTest;
-        private Mock<ISaveJsonToS3UseCase> _mockUseCase;
+        private Mock<IGetS3PutPresignUrlUseCase> _mockUseCase;
         [SetUp]
         public void Setup()
         {
-            _mockUseCase = new Mock<ISaveJsonToS3UseCase>();
+            _mockUseCase = new Mock<IGetS3PutPresignUrlUseCase>();
             _classUnderTest = new SaveJsonToS3Controller(_mockUseCase.Object);
         }
         [Test]
@@ -46,7 +46,7 @@ namespace ElectoralPOC.Tests.V1.Controllers
         [Test]
         public void ControllerReturns500IfUrlNotGenerated()
         {
-            _mockUseCase.Setup(x => x.GetS3PutPresignUrl(It.IsAny<SaveJsonToS3Request>())).Throws(new SaveJsonToS3CouldNotBeGeneratedException("URL could not be generated"));
+            _mockUseCase.Setup(x => x.GetS3PutPresignUrl(It.IsAny<SaveJsonToS3Request>())).Throws(new JsonFileCouldNotBeSavedToS3Exception("URL could not be generated"));
 
             var response = _classUnderTest.SaveJsonToS3(new SaveJsonToS3Request()) as ObjectResult;
             response.Should().NotBeNull();

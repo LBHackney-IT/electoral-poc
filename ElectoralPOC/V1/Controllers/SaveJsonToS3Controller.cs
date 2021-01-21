@@ -12,14 +12,14 @@ using System.Threading.Tasks;
 namespace ElectoralPOC.V1.Controllers
 {
     [ApiController]
-    [Route("unprocessed /{ }_requestdata.json")]
+    [Route("api/v1/json-data")]
     [Produces("application/json")]
     [ApiVersion("1.0")]
     public class SaveJsonToS3Controller : BaseController
     {
-        private readonly ISaveJsonToS3UseCase _getSaveJsonToS3UseCase;
+        private readonly IGetS3PutPresignUrlUseCase _getSaveJsonToS3UseCase;
 
-        public SaveJsonToS3Controller(ISaveJsonToS3UseCase getSaveJsonToS3UseCase)
+        public SaveJsonToS3Controller(IGetS3PutPresignUrlUseCase getSaveJsonToS3UseCase)
         {
             _getSaveJsonToS3UseCase = getSaveJsonToS3UseCase;
         }
@@ -37,7 +37,7 @@ namespace ElectoralPOC.V1.Controllers
                 var response = _getSaveJsonToS3UseCase.GetS3PutPresignUrl(request);
                 return CreatedAtAction("SaveS3", response);
             }
-            catch (SaveJsonToS3CouldNotBeGeneratedException ex)
+            catch (JsonFileCouldNotBeSavedToS3Exception ex)
             {
                 return StatusCode(500, ex.Message);
             }

@@ -14,9 +14,9 @@ using System.Threading.Tasks;
 
 namespace ElectoralPOC.Tests.V1.UseCase
 {
-    public class SaveJsonToS3UseCaseTests
+    public class GetS3PutPresignUrlUseCaseTests
     {
-        private SaveJsonToS3UseCase _classUnderTest;
+        private GetS3PutPresignUrlUseCase _classUnderTest;
         private Mock<ISaveJsonToS3Gateway> _mockUrlGenerationService;
         private Faker _faker = new Faker();
         private string _responseUrl;
@@ -26,7 +26,7 @@ namespace ElectoralPOC.Tests.V1.UseCase
             _mockUrlGenerationService = new Mock<ISaveJsonToS3Gateway>();
             _responseUrl = _faker.Random.Word();
             _mockUrlGenerationService.Setup(x => x.ConvertJsonToArray(It.IsAny<SaveJsonToS3Request>())).Returns(_responseUrl);
-            _classUnderTest = new SaveJsonToS3UseCase(_mockUrlGenerationService.Object);
+            _classUnderTest = new GetS3PutPresignUrlUseCase(_mockUrlGenerationService.Object);
         }
         [Test]
         public void VerifyUseCaseCallsS3UrlHelper()

@@ -6,6 +6,7 @@ using ElectoralPOC.V1.Boundary.Request;
 using ElectoralPOC.V1.Boundary.Response;
 using ElectoralPOC.V1.Domain.Exceptions;
 using ElectoralPOC.V1.Helpers;
+using ElectoralPOC.V1.UseCase.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -17,24 +18,24 @@ namespace ElectoralPOC.V1.Infrastructure
 {
     public class AWSS3Client : IAwsS3Client
     {
-        public string SaveJsonToS3(GetPreSignedUrlRequest request)
+
+        public void SaveJsonToS3(SaveJsonToS3Request jsonRequest)
         {
             using (AmazonS3Client _s3Client = new AmazonS3Client(RegionEndpoint.USWest2))
             {
               
-                byte[] _byteArray = Encoding.ASCII.GetBytes("unprocessed /{ }_requestdata.json");
+                byte[] _byteArray = Encoding.ASCII.GetBytes(jsonRequest.JsonData);
                 using (var stream = new MemoryStream(_byteArray))
                 {
                     var objectRequest = new PutObjectRequest
                     {
-                        BucketName = Environment.GetEnvironmentVariable("electoral-register-stack-rdatadropbucketa4dd7fb3-jcd1deylvkwn"),
-                        Key = Environment.GetEnvironmentVariable("unprocessed /{ }_requestdata.json"),
-                        ContentType = Environment.GetEnvironmentVariable("application/json"),
+                        BucketName = jsonRequest.BucketName,
+                        Key = SaveJsonToS3Helper.EnsureFileIsJson(jsonRequest.JsonData),
+                        ContentType = "application/json",
                         InputStream = stream,
                     };
                     var response = _s3Client.PutObjectAsync(objectRequest).ConfigureAwait(false);
                 }
-                return _s3Client.GetPreSignedURL(request);
             }
         }
     }

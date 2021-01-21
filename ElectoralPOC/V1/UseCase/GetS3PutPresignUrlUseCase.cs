@@ -11,10 +11,10 @@ using System.Threading.Tasks;
 
 namespace ElectoralPOC.V1.UseCase
 {
-    public class SaveJsonToS3UseCase : ISaveJsonToS3UseCase
+    public class GetS3PutPresignUrlUseCase : IGetS3PutPresignUrlUseCase
     {
         private ISaveJsonToS3Gateway _saveJsonToS3Gateway;
-        public SaveJsonToS3UseCase(ISaveJsonToS3Gateway saveJsonToS3Gateway)
+        public GetS3PutPresignUrlUseCase(ISaveJsonToS3Gateway saveJsonToS3Gateway)
         {
             _saveJsonToS3Gateway = saveJsonToS3Gateway;
         }
