@@ -14,6 +14,7 @@ namespace ElectoralPOC.V1.UseCase
     public class SaveJsonToS3UseCase : ISaveJsonToS3UseCase
     {
         private ISaveJsonToS3Gateway _saveJsonToS3Gateway;
+
         public SaveJsonToS3UseCase(ISaveJsonToS3Gateway saveJsonToS3Gateway)
         {
             _saveJsonToS3Gateway = saveJsonToS3Gateway;
@@ -21,9 +22,11 @@ namespace ElectoralPOC.V1.UseCase
 
         public SaveJsonToS3Response SaveJsonToS3Case(SaveJsonToS3Request request)
         {
+            request.FileName = SaveJsonToS3Helper.EnsureFileIsJson(request.FileName);
+
             return new SaveJsonToS3Response
             {
-                JsonData = _saveJsonToS3Gateway.ConvertJsonToArray(request)
+                JsonData = _saveJsonToS3Gateway.SaveJsonToS3(request)
             };
         }
     }

@@ -22,13 +22,13 @@ namespace ElectoralPOC.V1.Gateway
         {
             _awsS3Client = awsS3Client;
         }
-        public string ConvertJsonToArray(SaveJsonToS3Request jsonRequest)
+        public string SaveJsonToS3(SaveJsonToS3Request jsonRequest)
         {
             try
             {
-                var response = _awsS3Client.ToString();
                 _awsS3Client.SaveJsonToS3(jsonRequest);
-                return response;
+                return jsonRequest.JsonData;
+                
             }
             catch (Exception ex)
             {

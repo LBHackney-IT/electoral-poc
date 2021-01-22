@@ -32,26 +32,26 @@ namespace ElectoralPOC.Tests.V1.Controllers
         }
 
         [Test]
-        public void CanGeneratePreSignedURL()
+        public void CanSaveJsonToS3AndReturn201Created()
         {
-            var expectedResponse = new SaveJsonToS3Response() { JsonData = "https://master.d1ew52s1hpob9x.amplifyapp.com/form/register-applicant/applicant-details" };
+            var expectedResponse = new SaveJsonToS3Response() { JsonData = "{\"name\":\"john\",\"age\":22,\"class\":\"mca\"}"};
             _mockUseCase.Setup(x => x.SaveJsonToS3Case(It.IsAny<SaveJsonToS3Request>())).Returns(expectedResponse);
 
-            var response = _classUnderTest.SaveJsonToS3(new SaveJsonToS3Request()) as ObjectResult;
+            var response = _classUnderTest.SaveJsonToS3(new SaveJsonToS3Request()) as CreatedAtActionResult;
             response.Should().NotBeNull();
             response.StatusCode.Should().Be(201);
             response.Value.Should().Be(expectedResponse);
         }
 
         [Test]
-        public void ControllerReturns500IfUrlNotGenerated()
+        public void ControllerReturns500IfJsonDataCannotBeSavedToS3()
         {
-            _mockUseCase.Setup(x => x.SaveJsonToS3Case(It.IsAny<SaveJsonToS3Request>())).Throws(new JsonFileCouldNotBeSavedToS3Exception("URL could not be generated"));
+            _mockUseCase.Setup(x => x.SaveJsonToS3Case(It.IsAny<SaveJsonToS3Request>())).Throws(new JsonFileCouldNotBeSavedToS3Exception("Json File could not be saved"));
 
             var response = _classUnderTest.SaveJsonToS3(new SaveJsonToS3Request()) as ObjectResult;
             response.Should().NotBeNull();
             response.StatusCode.Should().Be(500);
-            response.Value.Should().Be("URL could not be generated");
+            response.Value.Should().Be("Json File could not be saved");
         }
 
      

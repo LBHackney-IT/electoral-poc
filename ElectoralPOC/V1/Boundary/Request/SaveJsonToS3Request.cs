@@ -12,11 +12,6 @@ namespace ElectoralPOC.V1.Boundary.Request
         [Required]
         public string FileName { get; set; }
         [Required]
-        public string SubmissionId { get; set; }
-        [RegularExpression("GET|PUT")]
-        public string HttpVerb { get; set; } = "GET";
-        public string BasePath { get; set; } = "";
-        [Required]
         public string BucketName { get; set; }
 
         [Required]

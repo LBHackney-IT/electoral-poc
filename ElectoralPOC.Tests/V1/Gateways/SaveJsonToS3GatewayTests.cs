@@ -26,29 +26,28 @@ namespace ElectoralPOC.Tests.V1.Gateways
         {
             _mockS3Client = new Mock<IAwsS3Client>();
             _classUnderTest = new SaveJsonToS3Gateway(_mockS3Client.Object);
-            Environment.SetEnvironmentVariable("ELECTORAL_POC_S3_BUCKET_NAME", "bucket");
         }
         [Test]
         public void VerifyGatewayCallsS3Client()
         {
             var request = _fixture.Create<SaveJsonToS3Request>();
-            _classUnderTest.ConvertJsonToArray(request);
+            _classUnderTest.SaveJsonToS3(request);
             _mockS3Client.Verify(x => x.SaveJsonToS3(It.IsAny<SaveJsonToS3Request>()), Times.Once);
         }
 
         [Test]
-        public void CheckThatIfS3ClientThrowsExceptionPreSignedUrlCouldNotBeGeneratedExceptionIsThrown()
+        public void CheckThatIfS3ClientThrowsExceptionWhenJsonFileCannotBeSaved()
         {
             _mockS3Client.Setup(x => x.SaveJsonToS3(It.IsAny<SaveJsonToS3Request>())).Throws(new AggregateException());
-            Assert.Throws<JsonFileCouldNotBeSavedToS3Exception>(() => _classUnderTest.ConvertJsonToArray(new SaveJsonToS3Request()));
+            Assert.Throws<JsonFileCouldNotBeSavedToS3Exception>(() => _classUnderTest.SaveJsonToS3(new SaveJsonToS3Request()));
         }
 
         //[Test]
         //public void CanSuccessfullyReturnGeneratedUrl()
         //{
         //    var request = _fixture.Create<SaveJsonToS3Request>();
-        //    var actualResponse = _classUnderTest.ConvertJsonToArray(request) as CreatedAtActionResult;
-        //    actualResponse.StatusCode.Should().Be(201);
+        //    var response = _classUnderTest.SaveJsonToS3(request) as CreatedAtActionResult;
+        //    response.StatusCode.Should().Be(201);
 
         //}
     }

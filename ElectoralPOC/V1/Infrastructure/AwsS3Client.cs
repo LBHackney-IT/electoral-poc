@@ -21,7 +21,7 @@ namespace ElectoralPOC.V1.Infrastructure
 
         public void SaveJsonToS3(SaveJsonToS3Request jsonRequest)
         {
-            using (AmazonS3Client _s3Client = new AmazonS3Client(RegionEndpoint.USWest2))
+            using (AmazonS3Client _s3Client = new AmazonS3Client(RegionEndpoint.EUWest2))
             {
               
                 byte[] _byteArray = Encoding.ASCII.GetBytes(jsonRequest.JsonData);
@@ -30,11 +30,11 @@ namespace ElectoralPOC.V1.Infrastructure
                     var objectRequest = new PutObjectRequest
                     {
                         BucketName = jsonRequest.BucketName,
-                        Key = SaveJsonToS3Helper.EnsureFileIsJson(jsonRequest.JsonData),
+                        Key = jsonRequest.FileName,
                         ContentType = "application/json",
                         InputStream = stream,
                     };
-                    var response = _s3Client.PutObjectAsync(objectRequest).ConfigureAwait(false);
+                    var response = _s3Client.PutObjectAsync(objectRequest).Result;
                 }
             }
         }

@@ -9,6 +9,6 @@ namespace ElectoralPOC.V1.Gateway
 {
     public interface ISaveJsonToS3Gateway
     {
-        string ConvertJsonToArray(SaveJsonToS3Request jsonRequest);
+        string SaveJsonToS3(SaveJsonToS3Request jsonRequest);
     }
 }
