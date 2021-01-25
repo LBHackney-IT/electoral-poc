@@ -2,6 +2,7 @@ using Amazon;
 using Amazon.S3;
 using Amazon.S3.Model;
 using ElectoralPOC.V1.Boundary.Request;
+using ElectoralPOC.V1.Boundary.Response;
 using ElectoralPOC.V1.Domain.Exceptions;
 using ElectoralPOC.V1.Gateway;
 using ElectoralPOC.V1.Helpers;
@@ -22,13 +23,11 @@ namespace ElectoralPOC.V1.Gateway
         {
             _awsS3Client = awsS3Client;
         }
-        public string SaveJsonToS3(SaveJsonToS3Request jsonRequest)
+        public void  SaveJsonToS3(SaveJsonToS3Request jsonRequest)
         {
             try
             {
-                _awsS3Client.SaveJsonToS3(jsonRequest);
-                return jsonRequest.JsonData;
-                
+                _awsS3Client.SaveJsonToS3(jsonRequest);   
             }
             catch (Exception ex)
             {

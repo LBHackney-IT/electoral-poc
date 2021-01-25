@@ -24,20 +24,12 @@ namespace ElectoralPOC.Tests.V1.UseCase
             _mockGateway = new Mock<ISaveJsonToS3Gateway>();
             _classUnderTest = new SaveJsonToS3UseCase(_mockGateway.Object);
         }
-        //[Test]
-        //public void VerifyThatGatewayIsCalled()
-        //{
-        //    var expectedResponse = new SaveJsonToS3Response() { JsonData = "{\"name\":\"john\",\"age\":22,\"class\":\"mca\"}" };
-        //    _mockGateway.Setup(x => x.SaveJsonToS3(It.IsAny<SaveJsonToS3Request>())).Returns(expectedResponse);
-        //    _classUnderTest.SaveJsonToS3Case(new SaveJsonToS3Request());
-        //    _mockGateway.Verify(x => x.SaveJsonToS3(It.IsAny<SaveJsonToS3Request>()), Times.Once);
-        //}
-        //[Test]
-        //public void CanGetS3PutPreSignUrl()
-        //{
-        //    var response = _classUnderTest.SaveJsonToS3Case(new SaveJsonToS3Request());
-        //    response.JsonData.Should().Be(_responseUrl);
-        //    response.Should().BeOfType<SaveJsonToS3Response>();
-        //}
+        [Test]
+        public void VerifyThatGatewayIsCalled()
+        {
+            _mockGateway.Setup(x => x.SaveJsonToS3(It.IsAny<SaveJsonToS3Request>()));
+            _classUnderTest.SaveJsonToS3Case(new SaveJsonToS3Request());
+            _mockGateway.Verify(x => x.SaveJsonToS3(It.IsAny<SaveJsonToS3Request>()), Times.Once);
+        }
     }
 }

@@ -34,13 +34,11 @@ namespace ElectoralPOC.Tests.V1.Controllers
         [Test]
         public void CanSaveJsonToS3AndReturn201Created()
         {
-            var expectedResponse = new SaveJsonToS3Response() { JsonData = "{\"name\":\"john\",\"age\":22,\"class\":\"mca\"}"};
-            _mockUseCase.Setup(x => x.SaveJsonToS3Case(It.IsAny<SaveJsonToS3Request>())).Returns(expectedResponse);
+            _mockUseCase.Setup(x => x.SaveJsonToS3Case(It.IsAny<SaveJsonToS3Request>()));
 
             var response = _classUnderTest.SaveJsonToS3(new SaveJsonToS3Request()) as CreatedAtActionResult;
             response.Should().NotBeNull();
             response.StatusCode.Should().Be(201);
-            response.Value.Should().Be(expectedResponse);
         }
 
         [Test]
@@ -54,6 +52,19 @@ namespace ElectoralPOC.Tests.V1.Controllers
             response.Value.Should().Be("Json File could not be saved");
         }
 
-     
+        [Test]
+        public void ThrowsExceptionIfFileReturnsInvalidExtension()
+        {
+            var fileName = "test.csv";
+            _mockUseCase.Setup(x => x.SaveJsonToS3Case(It.IsAny<SaveJsonToS3Request>())).Throws(new JsonFileCouldNotBeSavedToS3Exception("Filename contains invalid extension " + fileName));
+
+            var response = _classUnderTest.SaveJsonToS3(new SaveJsonToS3Request()) as ObjectResult;
+            response.Should().NotBeNull();
+            response.StatusCode.Should().Be(500);
+            response.Value.Should().Be("Filename contains invalid extension " + fileName);
+
+        }
+
+
     }
 }

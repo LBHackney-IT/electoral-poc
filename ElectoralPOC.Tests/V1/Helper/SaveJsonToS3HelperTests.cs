@@ -37,16 +37,6 @@ namespace ElectoralPOC.Tests.V1.Helper
         }
 
         [Test]
-        [Ignore("In Progress")]
-        public void ThrowsExceptionIfFileReturnsInvalidExtension()
-        {
-            var fileName = "test.csv";
-            var result = SaveJsonToS3Helper.EnsureFileIsJson(fileName);
-            
-           
-        }
-
-        [Test]
         public void EditsFileNameSoItContainsJsonExtension()
         {
             var fileName = "test";
