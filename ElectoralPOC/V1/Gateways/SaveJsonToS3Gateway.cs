@@ -23,16 +23,16 @@ namespace ElectoralPOC.V1.Gateway
         {
             _awsS3Client = awsS3Client;
         }
-        public void  SaveJsonToS3(SaveJsonToS3Request jsonRequest)
+        public void SaveJsonToS3(SaveJsonToS3Request jsonRequest)
         {
             try
             {
-                _awsS3Client.SaveJsonToS3(jsonRequest);   
+                _awsS3Client.SaveJsonToS3(jsonRequest);
             }
             catch (Exception ex)
             {
                 throw new JsonFileCouldNotBeSavedToS3Exception($"The JSON file could not be save to S3 for the following reason - {ex.Message}, {ex.InnerException}");
             }
-        }       
+        }
     }
 }

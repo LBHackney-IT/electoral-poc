@@ -34,8 +34,8 @@ namespace ElectoralPOC.V1.Controllers
         {
             try
             {
-                var response = _getSaveJsonToS3UseCase.SaveJsonToS3Case(request);
-                return CreatedAtAction("SaveS3", response);
+                _getSaveJsonToS3UseCase.SaveJsonToS3Case(request);
+                return CreatedAtAction("SaveS3", null);
             }
             catch (JsonFileCouldNotBeSavedToS3Exception ex)
             {

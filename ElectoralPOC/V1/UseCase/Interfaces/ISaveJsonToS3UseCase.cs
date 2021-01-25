@@ -10,7 +10,7 @@ namespace ElectoralPOC.V1.UseCase.Interfaces
 {
     public interface ISaveJsonToS3UseCase
     {
-        SaveJsonToS3Response SaveJsonToS3Case(SaveJsonToS3Request request);
+        void SaveJsonToS3Case(SaveJsonToS3Request request);
     }
 
 }

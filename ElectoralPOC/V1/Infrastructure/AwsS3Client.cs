@@ -23,7 +23,7 @@ namespace ElectoralPOC.V1.Infrastructure
         {
             using (AmazonS3Client _s3Client = new AmazonS3Client(RegionEndpoint.EUWest2))
             {
-              
+
                 byte[] _byteArray = Encoding.ASCII.GetBytes(jsonRequest.JsonData);
                 using (var stream = new MemoryStream(_byteArray))
                 {

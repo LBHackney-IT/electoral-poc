@@ -28,7 +28,11 @@ namespace ElectoralPOC.Tests.V1.UseCase
         public void VerifyThatGatewayIsCalled()
         {
             _mockGateway.Setup(x => x.SaveJsonToS3(It.IsAny<SaveJsonToS3Request>()));
-            _classUnderTest.SaveJsonToS3Case(new SaveJsonToS3Request());
+            _classUnderTest.SaveJsonToS3Case(
+            new SaveJsonToS3Request
+            {
+                FileName = "test.json"
+            });
             _mockGateway.Verify(x => x.SaveJsonToS3(It.IsAny<SaveJsonToS3Request>()), Times.Once);
         }
     }

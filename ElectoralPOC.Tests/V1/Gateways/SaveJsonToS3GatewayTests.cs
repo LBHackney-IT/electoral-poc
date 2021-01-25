@@ -42,13 +42,5 @@ namespace ElectoralPOC.Tests.V1.Gateways
             Assert.Throws<JsonFileCouldNotBeSavedToS3Exception>(() => _classUnderTest.SaveJsonToS3(new SaveJsonToS3Request()));
         }
 
-        [Test]
-        public void CanSuccessfullyReturnGeneratedUrl()
-        {
-            var request = _fixture.Create<SaveJsonToS3Request>();
-            var response = _classUnderTest.SaveJsonToS3(request) as CreatedAtActionResult;
-            response.StatusCode.Should().Be(201);
-
-        }
     }
 }

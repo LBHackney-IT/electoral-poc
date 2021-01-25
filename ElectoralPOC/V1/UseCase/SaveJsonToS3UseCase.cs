@@ -20,11 +20,11 @@ namespace ElectoralPOC.V1.UseCase
             _saveJsonToS3Gateway = saveJsonToS3Gateway;
         }
 
-        public SaveJsonToS3Response SaveJsonToS3Case(SaveJsonToS3Request request)
+        public void SaveJsonToS3Case(SaveJsonToS3Request request)
         {
             request.FileName = SaveJsonToS3Helper.EnsureFileIsJson(request.FileName);
-            return _saveJsonToS3Gateway.SaveJsonToS3(request);
-           
+            _saveJsonToS3Gateway.SaveJsonToS3(request);
+
         }
     }
 }

@@ -27,7 +27,7 @@ namespace ElectoralPOC.V1.Helpers
             {
                 return fileName;
             }
-            else if(fileName.Contains("."))
+            else if (fileName.Contains("."))
             {
                 throw new FileNameContainsInvalidExtensionException("Filename contains invalid extension " + fileName);
             }
@@ -36,7 +36,7 @@ namespace ElectoralPOC.V1.Helpers
                 return fileName + ".json";
             }
 
-            
+
         }
     }
 }
