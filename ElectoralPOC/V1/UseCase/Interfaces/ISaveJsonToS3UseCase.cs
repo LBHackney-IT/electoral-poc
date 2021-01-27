@@ -1,3 +1,4 @@
+using Amazon.S3.Model;
 using ElectoralPOC.V1.Boundary.Request;
 using ElectoralPOC.V1.Boundary.Response;
 using System;
@@ -7,8 +8,9 @@ using System.Threading.Tasks;
 
 namespace ElectoralPOC.V1.UseCase.Interfaces
 {
-    public interface IGetPreSignURLUseCase
+    public interface ISaveJsonToS3UseCase
     {
-        GeneratePreSignedUrlResponse GetS3PutPresignUrl(GenerateS3PreSignedUrlRequest request);
+        void SaveJsonToS3Case(SaveJsonToS3Request request);
     }
+
 }

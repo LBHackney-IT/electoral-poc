@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using ElectoralPOC.V1.Gateway;
 using ElectoralPOC.V1.Helpers;
 using ElectoralPOC.V1.Infrastructure;
 using ElectoralPOC.V1.UseCase;
@@ -111,13 +112,13 @@ namespace ElectoralPOC
 
         private static void RegisterGateways(IServiceCollection services)
         {
-            services.AddSingleton<IGenerateS3PreSignedUrlGateway, GenerateS3PreSignedUrlGateway>();
+            services.AddSingleton<ISaveJsonToS3Gateway, SaveJsonToS3Gateway>();
             services.AddSingleton<IAwsS3Client, AWSS3Client>();
         }
 
         private static void RegisterUseCases(IServiceCollection services)
         {
-            services.AddScoped<IGetPreSignURLUseCase, GetPreSignURLUseCase>();
+            services.AddScoped<ISaveJsonToS3UseCase, SaveJsonToS3UseCase>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -4,19 +4,19 @@ setup:
 
 .PHONY: build
 build:
-	docker-compose build base-api
+	docker-compose build electoral-poc-api
 
 .PHONY: serve
 serve:
-	docker-compose build base-api && docker-compose up base-api
+	docker-compose build electoral-poc-api && docker-compose up electoral-poc-api
 
 .PHONY: shell
 shell:
-	docker-compose run base-api bash
+	docker-compose run electoral-poc-api bash
 
 .PHONY: test
 test:
-	docker-compose up test-database & docker-compose build base-api-test && docker-compose up base-api-test
+	docker-compose up test-database & docker-compose build electoral-poc-api-test && docker-compose up electoral-poc-api-test
 
 .PHONY: lint
 lint:

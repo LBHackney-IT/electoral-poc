@@ -7,16 +7,14 @@ using System.Threading.Tasks;
 
 namespace ElectoralPOC.V1.Boundary.Request
 {
-    public class GenerateS3PreSignedUrlRequest
+    public class SaveJsonToS3Request
     {
         [Required]
         public string FileName { get; set; }
         [Required]
-        public string SubmissionId { get; set; }
-        [RegularExpression("GET|PUT")]
-        public string HttpVerb { get; set; } = "GET";
-        public string BasePath { get; set; } = "";
-        [Required]
         public string BucketName { get; set; }
+
+        [Required]
+        public string JsonData { get; set; }
     }
 }
