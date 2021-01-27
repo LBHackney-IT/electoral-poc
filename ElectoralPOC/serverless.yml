@@ -16,7 +16,7 @@ provider:
 
 package:
 # TODO: Rename zipfile in build.sh and build.cmd to match this
-  artifact: ./bin/release/netcoreapp3.1/your-api-name.zip
+  artifact: ./bin/release/netcoreapp3.1/electoral-poc-api.zip
 
 functions:
   ElectoralPOC:
