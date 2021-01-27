@@ -58,5 +58,12 @@ namespace ElectoralPOC.Tests.V1.Helper
             result.Should().Be(filename);
         }
 
+        [Test]
+        public void ThrowErrorIfExtensionIsInCorrect()
+        {
+            var filename = "test.csv";
+            Assert.Throws<FileNameContainsInvalidExtensionException>(() => SaveJsonToS3Helper.EnsureFileIsJson(filename));
+        }
+
     }
 }
