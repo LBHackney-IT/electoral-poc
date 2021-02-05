@@ -69,7 +69,7 @@ resources:
                   Resource:
                     Fn::Join:
                       - ""
-                      - - "arn:aws:s3:::"
+                      - - "arn:aws:s3:::electoral-register-stack-rdatadropbucketa4dd7fb3-jcd1deylvkwn"
                         - "Ref": "ServerlessDeploymentBucket"
           - PolicyName: lambdaInvocation
             PolicyDocument:
