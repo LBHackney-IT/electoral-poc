@@ -128,7 +128,7 @@ namespace ElectoralPOC
             app.UseCors(builder => builder
                .AllowAnyOrigin()
                .AllowAnyHeader()
-               .AllowAnyMethod();
+               .AllowAnyMethod());
 
             if (env.IsDevelopment())
             {
