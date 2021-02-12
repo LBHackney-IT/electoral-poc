@@ -29,13 +29,14 @@ namespace ElectoralPOC.V1.Controllers
         /// <response code="201">JSON data successfully saved to S3 bucket</response>
         /// <response code="500">Internal Server Error</response>
         [ProducesResponseType(typeof(SaveJsonToS3Response), StatusCodes.Status201Created)]
+        [Produces("application/json")]
         [HttpPost]
         public IActionResult SaveJsonToS3([FromBody] SaveJsonToS3Request request)
         {
             try
             {
                 _getSaveJsonToS3UseCase.SaveJsonToS3Case(request);
-                return CreatedAtAction("SaveS3", null);
+                return CreatedAtAction("SaveS3Successful", null);
             }
             catch (JsonFileCouldNotBeSavedToS3Exception ex)
             {
