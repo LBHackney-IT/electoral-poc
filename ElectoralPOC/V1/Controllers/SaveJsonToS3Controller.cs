@@ -35,12 +35,23 @@ namespace ElectoralPOC.V1.Controllers
             try
             {
                 _getSaveJsonToS3UseCase.SaveJsonToS3Case(request);
-                return CreatedAtAction("SaveS3", null);
+                return CreatedAtAction("SaveS3Successful", null);
             }
             catch (JsonFileCouldNotBeSavedToS3Exception ex)
             {
                 return StatusCode(500, ex.Message);
             }
+        }
+
+        ///<summary>
+        ///return options
+        /// </summary>
+        [HttpOptions]
+        public IActionResult Options()
+        {
+            Response.Headers.Add("Access-Control-Origin", "*");
+            Response.Headers.Add("Content-Type", "application/json");
+            return HandleResponse("OK");
         }
     }
 }
