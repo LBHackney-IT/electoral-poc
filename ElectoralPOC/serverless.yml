@@ -27,6 +27,11 @@ functions:
       - http:
           path: /{proxy+}
           method: ANY
+          cors:
+            origin: '*'
+            headers:
+            - Content-Type
+            - Access-Control-Allow-Origin
           private: true
 resources:
   Resources:

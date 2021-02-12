@@ -29,6 +29,7 @@ namespace ElectoralPOC.V1.Controllers
         /// <response code="201">JSON data successfully saved to S3 bucket</response>
         /// <response code="500">Internal Server Error</response>
         [ProducesResponseType(typeof(SaveJsonToS3Response), StatusCodes.Status201Created)]
+        [Produces("application/json")]
         [HttpPost]
         public IActionResult SaveJsonToS3([FromBody] SaveJsonToS3Request request)
         {
@@ -41,17 +42,6 @@ namespace ElectoralPOC.V1.Controllers
             {
                 return StatusCode(500, ex.Message);
             }
-        }
-
-        ///<summary>
-        ///return options
-        /// </summary>
-        [HttpOptions]
-        public IActionResult Options()
-        {
-            Response.Headers.Add("Access-Control-Origin", "*");
-            Response.Headers.Add("Content-Type", "application/json");
-            return HandleResponse("OK");
         }
     }
 }
