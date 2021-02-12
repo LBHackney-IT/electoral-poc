@@ -11,6 +11,5 @@ namespace ElectoralPOC.V1.Boundary.Response
         [JsonProperty("json")]
         public string JsonData { get; set; }
 
-
     }
 }
