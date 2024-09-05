@@ -134,7 +134,21 @@ workflows:
           filters:
             branches:
               only: master
+      - permit-development-tf-release:
+          type: approval
+          requires:
+            - assume-role-development
+          filters:
+            branches:
+              only: master
       - terraform-init-and-apply-to-development:
+          requires:
+            - permit-development-tf-release
+          filters:
+            branches:
+              only: master
+      - permit-development-release:
+          type: approval
           requires:
             - assume-role-development
           filters:
@@ -142,7 +156,7 @@ workflows:
               only: master
       - deploy-to-development:
           requires:
-            - assume-role-development
+            - permit-development-release
           filters:
             branches:
               only: master
