@@ -1,4 +1,8 @@
-# LBH Base API
+# Electoral POC API
+
+Application and its cloud resources have been decommissioned.
+
+<!--
 
 Base API is a boilerplate code for being reused for new APIs for LBH
 
@@ -154,3 +158,4 @@ If changes to the database schema are made then the docker image for the databas
 [universal-housing-simulator]: https://github.com/LBHackney-IT/lbh-universal-housing-simulator
 [made-tech]: https://madetech.com/
 [AWS-CLI]: https://aws.amazon.com/cli/
+-->
