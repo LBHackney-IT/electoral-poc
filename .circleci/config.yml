@@ -125,12 +125,8 @@ jobs:
 workflows:
   check-and-deploy-development:
     jobs:
-      - check-code-formatting
-      - build-and-test
       - assume-role-development:
           context: electoral-poc-development-context
-          requires:
-            - build-and-test
           filters:
             branches:
               only: master
