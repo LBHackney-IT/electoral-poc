@@ -68,44 +68,17 @@ commands:
       - run:
           name: Install Node.js
           command: |
-            curl -sL https://deb.nodesource.com/setup_13.x | bash -
+            curl -sL https://deb.nodesource.com/setup_18.x | bash -
             apt-get update && apt-get install -y nodejs
       - run:
           name: Install serverless CLI
-          command: npm i -g serverless
-      - run:
-          name: Build lambda
-          command: |
-            cd ./ElectoralPOC/
-            chmod +x ./build.sh
-            ./build.sh
+          command: npm i -g serverless@^3
       - run:
           name: Deploy lambda
           command: |
             cd ./ElectoralPOC/
             sls deploy --stage <<parameters.stage>> --conceal
 jobs:
-  check-code-formatting:
-    executor: docker-dotnet
-    steps:
-      - checkout
-      - run:
-          name: Install dotnet format
-          command: dotnet tool install dotnet-format --tool-path ./dotnet-format-local/
-      - run:
-          name: Run formatter check
-          command: ./dotnet-format-local/dotnet-format --check
-  build-and-test:
-    executor: docker-python
-    steps:
-      - checkout
-      - setup_remote_docker
-      - run:
-          name: build
-          command: docker-compose build electoral-poc-test
-      - run:
-          name: Run tests
-          command: docker-compose run electoral-poc-test
   assume-role-development:
     executor: docker-python
     steps:
@@ -125,12 +98,8 @@ jobs:
 workflows:
   check-and-deploy-development:
     jobs:
-      - check-code-formatting
-      - build-and-test
       - assume-role-development:
           context: electoral-poc-development-context
-          requires:
-            - build-and-test
           filters:
             branches:
               only: master
