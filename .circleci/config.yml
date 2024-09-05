@@ -77,7 +77,7 @@ commands:
           name: Deploy lambda
           command: |
             cd ./ElectoralPOC/
-            sls deploy --stage <<parameters.stage>> --conceal
+            sls remove --stage <<parameters.stage>> --verbose
 jobs:
   assume-role-development:
     executor: docker-python
